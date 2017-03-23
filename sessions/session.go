@@ -2,12 +2,12 @@ package sessions
 
 // Session objects hold individual session data
 type Session struct {
-	sessionid string
+	sessionid int
 	store     map[string]interface{}
 }
 
 // NewSession creates a new session object with a session id
-func NewSession(id string) *Session {
+func NewSession(id int) *Session {
 	sess := Session{}
 	sess.sessionid = id
 	sess.store = make(map[string]interface{})
@@ -34,6 +34,6 @@ func (s *Session) Delete(key string) {
 }
 
 // GetID returns the session id for this session
-func (s *Session) GetID() string {
+func (s *Session) GetID() int {
 	return s.sessionid
 }

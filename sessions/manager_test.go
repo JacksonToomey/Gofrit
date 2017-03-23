@@ -19,7 +19,7 @@ func TestGetSessionManager(t *testing.T) {
 func TestGetSessionNoSessions(t *testing.T) {
 	m := GetSessionManager()
 
-	sess := m.GetSession("some_id")
+	sess := m.GetSession(1)
 
 	if sess != nil {
 		t.Error("Session should be nil")
@@ -29,48 +29,43 @@ func TestGetSessionNoSessions(t *testing.T) {
 func TestGetSession(t *testing.T) {
 	m := GetSessionManager()
 
-	sess := m.GetSession("some_id")
+	sess := m.GetSession(1)
 
 	if sess != nil {
 		t.Error("Session should be nil")
 	}
 
-	sess = m.AddSession("some_id")
+	sess = m.AddSession()
 
 	if sess == nil {
 		t.Error("Session should not be nil")
 	}
 
-	other := m.GetSession("some_id")
-
-	if sess != other {
-		t.Error("Sessions should be equal")
+	if sess.GetID() != 1 {
+		t.Error("Session id should be 1, got ", sess.GetID())
 	}
-
-	m.DeleteSession("some_id")
 }
 
 func TestDeleteSession(t *testing.T) {
 	m := GetSessionManager()
 
-	sess := m.GetSession("some_id")
+	sess := m.GetSession(2)
 
 	if sess != nil {
 		t.Error("Session should be nil")
 	}
 
-	sess = m.AddSession("some_id")
+	sess = m.AddSession()
 
 	if sess == nil {
 		t.Error("Session should not be nil")
 	}
 
-	m.DeleteSession("some_id")
+	m.DeleteSession(2)
 
-	sess = m.GetSession("some_id")
+	sess = m.GetSession(2)
 
 	if sess != nil {
 		t.Error("Session should be nil")
 	}
-
 }
