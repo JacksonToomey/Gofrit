@@ -1,0 +1,14 @@
+{{define "content"}}
+<a href="/register/">Create an account</a>
+<form method="POST">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username"  value="{{ .Username }}"/>
+    </div>
+    <div>
+        <label for="password">password</label>
+        <input type="password" name="password" value="{{ .Password }}"/>
+    </div>
+    <button type="submit">Login</button>
+</form>
+{{end}}
